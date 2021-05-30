@@ -1,0 +1,17 @@
+<form action="{% url 'google:search_results' %}" method="get">
+    <input name="q" type="text" placeholder="Search...">
+    <input type="submit" value="Submit">
+</form>
+
+
+<p>Twoje IP: {{ search_result.ip_address }}</p>
+<p>Liczba wyszukań {{ search_result.number_of_search }}</p>
+<p>Top 10 słów w tytule: {{ search_result.most_common_titles }}</p>
+<p>Top 10 opisów w opisie:{{ search_result.most_common_descriptions }}</p>
+
+
+{% for link in search_result.link_set.all %}
+
+<p>{{ forloop.counter }} <a href="{{ link.link }}">{{ link.link }}</a></p>
+
+{% endfor %}
